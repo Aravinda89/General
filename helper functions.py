@@ -1,6 +1,6 @@
 # Binary labels
 
-# Show batch of images using dataframe
+# display batch of images using dataframe
 def show_batch(df, source_dir, show_labels=False):
     df = shuffle(df)
     df.reset_index(drop=True, inplace=True)
@@ -13,6 +13,17 @@ def show_batch(df, source_dir, show_labels=False):
             labels = list(df.iloc[n,:][df.iloc[n,:]==1].to_dict().keys())
         plt.imshow(img)
         plt.xlabel(labels)
+        plt.axis('on')
+        
+# display batch of images using image list        
+def show_batch(img_list):
+    plt.figure(figsize=(12, 12))
+    for n in range(9):
+        ax = plt.subplot(3,3,n+1)
+        filename = random.choice(img_list)
+        img = load_img(filename, target_size=(300, 400))
+        plt.imshow(img)
+#         plt.xlabel(labels)
         plt.axis('on')
 
 # Value counts
